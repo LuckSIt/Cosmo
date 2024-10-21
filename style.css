@@ -1,3 +1,16 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.country {
+    cursor: pointer;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #007BFF;
+    border-radius: 5px;
+    text-align: center;
+}
+
 .map {
     position: relative;
 }
@@ -45,42 +58,48 @@
 }
 
 .info__bg {
+    display: none; /* Скрываем по умолчанию */
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-    display: none; /* Скрываем по умолчанию */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
-    /*opacity: 0;
-    transition: 0.3s all;
-    pointer-events: none;
-    z-index: 10;*/
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 .info__bg.active {
     display: flex;
-    /*pointer-events: all;
+    /*pointer-events: all;*/
     opacity: 1;
-    transition: 0.3s all;*/
+    /*transition: 0.3s all;*/
 }
 .info {
-    background-color: white; /* Цвет фона всплывающего окна */
+    background: white;
+    border-radius: 10px;
     padding: 20px;
-    border-radius: 8px; /* Скругление углов */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
-    max-width: 90%; /* Максимальная ширина */
-    width: 3000px; /* Фиксированная ширина */
-    box-sizing: border-box; /* Учитываем отступы и границы в ширине */
-    /*position: absolute;
-    top: 50%;
-    right: 100%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    border-radius: 20px;
-    padding: 25px;
-    width: 500px;*/
+    max-width: 1300px;
+    width: 80%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+}
+
+.info__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007BFF;
+}
+
+.info__text {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    margin: 10px 0;
 }
 
 .info__photo {
@@ -94,25 +113,56 @@
     margin-top: 20px; /* Отступ сверху */
 }
 
-.btn {
-    background-color: #007BFF; /* Цвет фона */
-    color: white; /* Цвет текста */
+.btn-right, .btn-left {
+    background-color: transparent; /* Прозрачный фон */
+    color: #ffffff; /* Цвет текста */
     border: none; /* Убираем границу */
-    border-radius: 5px; /* Закругляем углы */
-    padding: 10px 20px; /* Отступы внутри кнопки */
-    font-size: 16px; /* Размер шрифта */
+    padding: 15px 30px; /* Увеличенные отступы внутри кнопки */
+    font-size: 24px; /* Увеличенный размер шрифта */
     cursor: pointer; /* Курсор при наведении */
-    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
+    transition: color 0.3s, transform 0.2s; /* Плавные переходы */
+    margin: 20px; /* Отступ от окна */
+    position: relative; /* Для позиционирования псевдоэлементов */
+}
+
+.btn-right::after {
+    content: '>'; /* Стрелка вправо */
+    font-size: 40px; /* Размер стрелки */
+    margin-left: 10px; /* Отступ между текстом и стрелкой */
+    display: inline-block; /* Для управления отступами */
+    width: 70px; /* Ширина кружка */
+    height: 70px; /* Высота кружка */
+    border: 2px solid #ffffff; /* Граница кружка */
+    border-radius: 50%; /* Круглая форма */
+    text-align: center; /* Центрируем текст */
+    line-height: 70px; /* Вертикальное центрирование текста */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+}
+
+.btn-left::before {
+    content: '<'; /* Стрелка влево */
+    font-size: 40px; /* Размер стрелки */
+    margin-right: 10px; /* Отступ между стрелкой и текстом */
+    display: inline-block; /* Для управления отступами */
+    width: 70px; /* Ширина кружка */
+    height: 70px; /* Высота кружка */
+    border: 2px solid #ffffff; /* Граница кружка */
+    border-radius: 50%; /* Круглая форма */
+    text-align: center; /* Центрируем текст */
+    line-height: 70px; /* Вертикальное центрирование текста */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход */
+}
+
+.btn-right:hover::after, .btn-left:hover::before {
+    background-color: #aaaaaa; /* Цвет фона кружка при наведении */
+    color: white; /* Цвет текста при наведении */
 }
 
 .btn:hover {
-    background-color: #0056b3; /* Цвет фона при наведении */
+    color: #aaaaaa; /* Цвет текста при наведении */
     transform: scale(1.05); /* Увеличиваем размер при наведении */
 }
 
 .btn:active {
     transform: scale(0.95); /* Уменьшаем размер при нажатии */
 }
-
-
-
